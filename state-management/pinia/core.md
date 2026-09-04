@@ -230,7 +230,7 @@ export const useUser = defineStore('user', {
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 问一·存哪    | store 是 `reactive` 普通对象;state 字段统一收进 `pinia.state.value[id]`(全局响应式桶);整桶可观测、可 `$state` 替换、可序列化                       |
 | 问二·怎么变  | 直接赋值/`++`(响应式代理拦截)即可;批量用 `$patch`;没有"reducer"这一步                                                                              |
-| 问四·传导 UI | 不写订阅——靠 **Vue 依赖追踪**,读到即登记、改动即通知,**粒度精确到属性**(与 Zustand 的"Set 订阅 + selector 筛选"两条路线,见[对位篇](./contrast.md)) |
+| 问四·传导 UI | 不写订阅——靠 **Vue 依赖追踪**,读到即登记、改动即通知,**粒度精确到属性**(与 Zustand 的"Set 订阅 + selector 筛选"两条路线,见[对位篇](../contrast.md)) |
 | 问三·派生    | getter = `computed`,自带缓存与依赖失效(首次读到才算),不必像 selector 担心引用稳定                                                                  |
 
-> 源码参考:`pinia@^4.0` 的 `packages/pinia/src/{rootStore.ts, createPinia.ts, store.ts, defineStore.ts}`(发行版 `dist/pinia.esm-browser.js` 一致);Vue 响应式见 vuejs.org。下一篇:[Pinia 进阶:$patch / $subscribe / 插件](./pinia-advanced.md)。
+> 源码参考:`pinia@^4.0` 的 `packages/pinia/src/{rootStore.ts, createPinia.ts, store.ts, defineStore.ts}`(发行版 `dist/pinia.esm-browser.js` 一致);Vue 响应式见 vuejs.org。下一篇:[Pinia 进阶:$patch / $subscribe / 插件](./advanced.md)。

@@ -204,7 +204,7 @@ create(persist(immer(config)))
 | 解剖问题      | Zustand 扩展答案                                                                                                                                                          |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 问六·如何扩展 | **中间件 = config 变换**:在 `set` / `api.setState` / `api.subscribe` / `api` 命名空间任选改写,即实现 persist / immer / devtools / subscribeWithSelector / redux / combine |
-| 与 Redux 对比 | Redux 是**包在 dispatch 外的洋葱**(异步流、action 拦截);Zustand 是**建店时的 set 变换**——更像"替换零件"而非"层层传递"([对位篇](./contrast.md)与 Pinia 插件对照)           |
+| 与 Redux 对比 | Redux 是**包在 dispatch 外的洋葱**(异步流、action 拦截);Zustand 是**建店时的 set 变换**——更像"替换零件"而非"层层传递"([对位篇](../contrast.md)与 Pinia 插件对照)           |
 | 手法清单      | 换 set 追加副作用(persist 写盘)/ 替换 setState(immer 转换)/ 重写 subscribe(带 selector)/ 挂 api 命名空间(persist.xxx)                                                     |
 
-> 源码参考:`zustand@^5` 的 `esm/middleware.mjs`(`src/middleware.ts`)与 `esm/middleware/immer.mjs`(`src/middleware/immer.ts`)。下一篇:[Pinia 内核:与 Vue 响应式结合](./pinia-core.md)。
+> 源码参考:`zustand@^5` 的 `esm/middleware.mjs`(`src/middleware.ts`)与 `esm/middleware/immer.mjs`(`src/middleware/immer.ts`)。Zustand 三篇至此收束;Vue 侧同构实现走姊妹线 [Pinia 系列](../pinia/README.md),跨库收尾可读公共篇 [对位:双引擎对照与选型](../contrast.md)。

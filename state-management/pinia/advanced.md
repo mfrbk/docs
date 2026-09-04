@@ -2,7 +2,7 @@
 
 > 解剖问题单「问三·订阅观察 / 问五·动作钩子 / 问六·如何扩展」在 Pinia 的答案:$patch / $subscribe / $onAction / 插件。· [← 返回总纲](./README.md)
 
-[内核篇](./pinia-core.md)造出了 `reactive` 的 store,本篇拆能力层:**`$patch`(批量原子变更)、`$subscribe`(底层是 `watch`)、`$onAction`(动作钩子)、插件机制**,最后给 setup / options 双形态的取舍。
+[内核篇](./core.md)造出了 `reactive` 的 store,本篇拆能力层:**`$patch`(批量原子变更)、`$subscribe`(底层是 `watch`)、`$onAction`(动作钩子)、插件机制**,最后给 setup / options 双形态的取舍。
 
 ## 一、$patch:把多次改动折叠成一次变更
 
@@ -247,4 +247,4 @@ const { inc } = useCount() // ✅ 函数解构安全(this 已被包装器兜底)
 | 问六·如何扩展 | 插件在 store 创建时注入属性;devtools 插件默认随 `createPinia` 装配                                                                                        |
 | 双形态        | setup 是引擎原生形态,options 是被编译成 setup 的语法糖;直接解构丢响应性,要解构用 `storeToRefs`                                                            |
 
-> 源码参考:`pinia@^4.0` 的 `src/store.ts`($patch / $subscribe / action 包装器 / 插件 loop)、`src/subscriptions.ts`;行为以 pinia.vuejs.org 文档为准。下一篇:[对位:双引擎对照与选型](./contrast.md)。
+> 源码参考:`pinia@^4.0` 的 `src/store.ts`($patch / $subscribe / action 包装器 / 插件 loop)、`src/subscriptions.ts`;行为以 pinia.vuejs.org 文档为准。Pinia 两篇至此收束;跨库对照选型见公共篇 [对位:双引擎对照与选型](../contrast.md),数据边界见 [Server State 分水岭](../server-state.md)。

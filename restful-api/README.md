@@ -1,6 +1,6 @@
 # RESTful API 对接规范
 
-> 前后端交互约定:RESTful API 以**资源**为中心——URL 唯一标识资源,标准 HTTP 方法做无状态通信,统一信封与状态码。本仓库 `@mzy1120/http` 即按此语义封装,见 [http-request](./http-request.md)。<!-- TODO: http-request.md(@mzy1120/http 功能库文档)尚未纳入本仓库,链接暂不可达 -->· [← 返回 docs 索引](./README.md)
+> 前后端交互约定:RESTful API 以**资源**为中心——URL 唯一标识资源,标准 HTTP 方法做无状态通信,统一信封与状态码。本仓库 `@mzy1120/http` 即按此语义封装,见 [http-request](../http-request.md)。<!-- TODO: http-request.md(@mzy1120/http 功能库文档)尚未纳入本仓库,链接暂不可达 -->· [← 返回 docs 索引](../README.md)
 
 ## 核心原则
 
@@ -102,7 +102,7 @@ await axios.put('/api/v1/users/123', { name: 'Jane' })
 await axios.delete('/api/v1/users/123')
 ```
 
-> 用本仓库 [@mzy1120/http](./http-request.md) 更省事:语义化方法 + 自动解信封,泛型直达业务数据,无需手写 `res.data` 与鉴权逻辑。<!-- TODO: http-request.md 尚未纳入本仓库,链接暂不可达,同上 -->
+> 用本仓库 [@mzy1120/http](../http-request.md) 更省事:语义化方法 + 自动解信封,泛型直达业务数据,无需手写 `res.data` 与鉴权逻辑。<!-- TODO: http-request.md 尚未纳入本仓库,链接暂不可达,同上 -->
 
 ## 速查
 

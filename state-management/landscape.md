@@ -1,6 +1,6 @@
 # 坐标系:状态分类、库谱系与解剖问题单
 
-> 本系列开篇:四类状态 / 五派库谱系 / 读懂任意状态库的六问。· [← 返回总纲](./README.md)
+> 两线公共开篇:四类状态 / 五派库谱系 / 读懂任意状态库的六问。· [← docs 索引](../README.md)
 
 先立坐标系,后续每篇都在为同一张解剖问题单填答案。
 
@@ -86,4 +86,4 @@ framework-agnostic 的"通用店"   为 Vue 而生的"活的对象"
 | 主线对照 | Zustand(vanilla 订阅 + 桥)vs Pinia(Vue reactive 依赖追踪)——分水岭是问四   |
 | 六问     | 存哪 / 怎么变 / 怎么读 / 如何传导 UI / 副作用与竞态 / 扩展点              |
 
-> 版本基准:`zustand@^5`、`pinia@^4.0`、`@tanstack/query-core@^5`;本页代码为思想示意。下一篇:[Zustand 内核:存储与订阅](./zustand-core.md)。
+> 版本基准:`zustand@^5`、`pinia@^4.0`、`@tanstack/query-core@^5`;本页代码为思想示意。接下来选一条线深读:[Zustand 系列](./zustand/README.md)(自 [内核](./zustand/core.md) 起)或 [Pinia 系列](./pinia/README.md)(自 [内核](./pinia/core.md) 起)。

@@ -2,7 +2,7 @@
 
 > 解剖问题单「问一·存哪 / 问二·怎么变 / 订阅怎么通知」在 Zustand 的第一份答案。· [← 返回总纲](./README.md)
 
-`zustand` 包分两层:`zustand/vanilla` 是**零框架依赖**的 store 引擎(约 20 行),`zustand`(React 入口)只在上面加一个 `useSyncExternalStore` 桥(见[下一章](./zustand-react.md))。内核纯净,store 才能在 React、Vue、甚至 Node 里用同一套订阅机制。
+`zustand` 包分两层:`zustand/vanilla` 是**零框架依赖**的 store 引擎(约 20 行),`zustand`(React 入口)只在上面加一个 `useSyncExternalStore` 桥(见[下一章](./react.md))。内核纯净,store 才能在 React、Vue、甚至 Node 里用同一套订阅机制。
 
 ## 一、用法:create 的两副面孔
 
@@ -113,7 +113,7 @@ set((s) => ({ user: { ...s.user, name: 'x' } })) // 深一层,必须自己展开
 set({ 'user.name': 'x' }) // ❌ 不会深合并,平白多出这个 key
 ```
 
-想写"可变风格"就配 immer 中间件(见[中间件篇](./zustand-middleware.md))。Zustand 的取舍:**不给状态罩魔法、保留对象语义,把深层写的痛苦外包给可选的 immer**。
+想写"可变风格"就配 immer 中间件(见[中间件篇](./middleware.md))。Zustand 的取舍:**不给状态罩魔法、保留对象语义,把深层写的痛苦外包给可选的 immer**。
 
 ### ⑤ 全量通知:一把梭,谁用谁筛
 
@@ -125,8 +125,8 @@ listeners.forEach((listener) => listener(state, previousState))
 
 "精准重渲染"靠**消费端筛选**,分两层:
 
-- 订阅端手动筛:`subscribe(listener)` 里自己比对新旧(`subscribeWithSelector` 中间件替你做了,见[中间件篇](./zustand-middleware.md));
-- React 端靠 **selector + 引用稳定**:谁从全量快照里"挑"出关心的片段,片段引用没变就不触发重渲染——[下一章](./zustand-react.md) 的主线。
+- 订阅端手动筛:`subscribe(listener)` 里自己比对新旧(`subscribeWithSelector` 中间件替你做了,见[中间件篇](./middleware.md));
+- React 端靠 **selector + 引用稳定**:谁从全量快照里"挑"出关心的片段,片段引用没变就不触发重渲染——[下一章](./react.md) 的主线。
 
 > 记忆:**vanilla 内核 = 存 + 通知,不含"精准"**;精准是消费端的问题。这个分工让内核保持 20 行,也让"精准策略"可被不同框架自由实现。
 
@@ -152,7 +152,7 @@ createStore((set, get, api) => {
 })
 ```
 
-`api` 被传进去,意味着中间件可以**在 createState 执行前就换掉 `api.setState`**——persist / devtools 改写行为的入口([中间件篇](./zustand-middleware.md))。
+`api` 被传进去,意味着中间件可以**在 createState 执行前就换掉 `api.setState`**——persist / devtools 改写行为的入口([中间件篇](./middleware.md))。
 
 ## 三、"20 行"就是重点
 
@@ -195,4 +195,4 @@ Zustand 把复杂度挪走了——挪到 React 桥的选择器模型、中间�
 | 订阅机制    | Set 全量通知,参数 (new, prev);内核不做片段筛选——"精准"交给消费端                                                                  |
 | 扩展点      | `api` 先于 createState 存在 → 中间件可在 createState 前换掉 `api.setState`                                                        |
 
-> 源码参考:`zustand@^5` 的 `packages/zustand/src/vanilla/createStore.ts`(发行版 `esm/vanilla.mjs` 一致);官方文档 zustand.docs.pmnd.rs。下一篇:[Zustand × React:渲染绑定](./zustand-react.md)。
+> 源码参考:`zustand@^5` 的 `packages/zustand/src/vanilla/createStore.ts`(发行版 `esm/vanilla.mjs` 一致);官方文档 zustand.docs.pmnd.rs。下一篇:[Zustand × React:渲染绑定](./react.md)。

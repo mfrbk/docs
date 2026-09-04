@@ -69,7 +69,7 @@ useSyncExternalStore(
 
 ## 二、为什么并发渲染下不撕裂
 
-React 18+ 渲染**可中断**(见本仓库 [React 并发调度笔记](../react-hooks-scheduling.md)):一次更新在 Commit 前可暂停、让位给高优任务、再回来重算。这给"外部 store + 自行订阅"的老方案埋了坑:
+React 18+ 渲染**可中断**(见本仓库 [React 并发调度笔记](../../react-hooks-scheduling/README.md)):一次更新在 Commit 前可暂停、让位给高优任务、再回来重算。这给"外部 store + 自行订阅"的老方案埋了坑:
 
 **tearing(数据撕裂)**——组件树不同部分各自在不同时刻读 store,UI 里一半新数据一半旧数据。坏实现是:组件里 `subscribe` 后 `setState`(强制重渲染),渲染里再 `getState()` 读:
 
@@ -91,7 +91,7 @@ function BadCounter() {
 
 **只要外部 store 走 `useSyncExternalStore`,React 就把它当成"渲染输入"来对齐**;Zustand 恰好把桥建在这条原语上,所以它在 `startTransition`、并发渲染下天然正确——不是它写得多聪明,是选对了 React 给的标准答案。
 
-> 对比 Vue 侧 Pinia:Vue 没有"可中断渲染",store 本身是响应式对象,靠依赖追踪通知(见 [Pinia 内核](./pinia-core.md))。[对位篇](./contrast.md) 逐维对照。
+> 对比 Vue 侧 Pinia:Vue 没有"可中断渲染",store 本身是响应式对象,靠依赖追踪通知(见 [Pinia 内核](../pinia/core.md))。[对位篇](../contrast.md) 逐维对照。
 
 ## 三、selector 的引用稳定:重渲染粒度的命门
 
@@ -157,6 +157,6 @@ function submit() {
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | 问四·传导到 UI | vanilla 全量通知 + React 桥 `useSyncExternalStore`;**渲染粒度 = selector 返回值的引用稳定度**;`useShallow` 为"多字段但想稳定"提供浅比较缓存 |
 | 并发 / 撕裂    | `useSyncExternalStore` 的提交前一致性检查保证 UI 永远来自同一 store 版本,`startTransition` 下安全                                           |
-| 扩展           | selector 之外:带选择器的 `subscribeWithSelector`、把能力"插在 set 链上"的中间件——见[中间件篇](./zustand-middleware.md)                      |
+| 扩展           | selector 之外:带选择器的 `subscribeWithSelector`、把能力"插在 set 链上"的中间件——见[中间件篇](./middleware.md)                      |
 
-> 源码参考:`zustand@^5` 的 `esm/react.mjs`(`src/react.ts`)与 `esm/react/shallow.mjs`(`src/react/shallow.ts`);`useSyncExternalStore` 见 react.dev/reference/react/useSyncExternalStore。下一篇:[Zustand 中间件](./zustand-middleware.md)。
+> 源码参考:`zustand@^5` 的 `esm/react.mjs`(`src/react.ts`)与 `esm/react/shallow.mjs`(`src/react/shallow.ts`);`useSyncExternalStore` 见 react.dev/reference/react/useSyncExternalStore。下一篇:[Zustand 中间件](./middleware.md)。

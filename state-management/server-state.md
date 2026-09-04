@@ -1,6 +1,6 @@
 # Server State 分水岭:数据是缓存,不是状态
 
-> 收官篇:远端数据不是状态、是缓存;TanStack Query 的缓存模型与它和 store 的协作边界。· [← 返回总纲](./README.md)
+> 两线公共收官:远端数据不是状态、是缓存;TanStack Query 的缓存模型与它和 store 的协作边界。· [← docs 索引](../README.md)
 
 大量被塞进 store 的东西——接口返回、分页列表、用户资料——根本不是"状态",而是"远端真实数据的本地缓存"。本篇先给 Server State 正名,再用 TanStack Query 的缓存模型讲清"数据该被怎么管",最后给出它与 store 协作的边界。
 
@@ -130,14 +130,14 @@ useMutation({
 
 ## 七、收束全系列
 
-本地态进组件、客户端全局进 Store 派(Zustand / Pinia)、服务端态进查询缓存、URL 态进地址栏——四类各归其位。把八篇合一:
+本地态进组件、客户端全局进 Store 派(Zustand / Pinia)、服务端态进查询缓存、URL 态进地址栏——四类各归其位。把整条状态管理学习线收束起来看:
 
 ```
-一个状态库要回答的六个问题(landscape 的解剖问题单)
-  ├─ Zustand 的答案:自建订阅 + React 桥 + 中间件(zustand-core / react / middleware)
-  ├─ Pinia 的答案:Vue 响应式外包 + 插件(zustand-core / advanced 的镜像)
-  ├─ 差异即知识:同范式双引擎对照(contrast)
-  └─ 边界即智慧:服务端数据不进 store(本篇)
+一个状态库要回答的六个问题(坐标系/方法论篇的解剖问题单)
+  ├─ Zustand 的答案:自建订阅 + React 桥 + 中间件(系列:core → react → middleware)
+  ├─ Pinia 的答案:Vue 响应式外包 + 插件(系列:core → advanced)
+  ├─ 差异即知识:同范式双引擎对照(公共·对位篇)
+  └─ 边界即智慧:服务端数据不进 store(公共·Server State 篇)
 ```
 
 **最后一句**:状态库没有银弹,银弹是**把每种状态放进它该去的机制**——读透 Zustand × Pinia 这对双引擎,是为了在任何一套 store 面前一眼看穿它存什么、怎么传、边界在哪。
@@ -154,4 +154,4 @@ useMutation({
 | 协作边界          | 服务端数据进 Query 缓存;客户端全局态进 store;单组件局部态连 store 都别进                                     |
 | 何时可不上查询库  | 一次性 GET、无共享无复用、SSR 直出;WebSocket 主导时收益打折                                                  |
 
-> 版本:`@tanstack/query-core@^5`(默认值如 staleTime 0 / retry 3 摘自发行源码与文档);API 细节以 tanstack.com/query 为准。返回总纲:[State Management 系列](./README.md)。
+> 版本:`@tanstack/query-core@^5`(默认值如 staleTime 0 / retry 3 摘自发行源码与文档);API 细节以 tanstack.com/query 为准。两条学习线入口:[Zustand 系列](./zustand/README.md)·[Pinia 系列](./pinia/README.md);[← docs 索引](../README.md)。

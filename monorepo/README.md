@@ -1,6 +1,6 @@
 # pnpm Monorepo 使用手册
 
-> pnpm workspace 通用速查(不绑定具体仓库):一个仓库管理多个子包——各自独立 `package.json`、可独立发版、共享工程规范,换来配置复用、跨包改动一次提交、本地联调免发版。本仓库实际脚本 / 发布落地见 [husky-changesets](./husky-changesets.md)。· [← 返回 docs 索引](./README.md)
+> pnpm workspace 通用速查(不绑定具体仓库):一个仓库管理多个子包——各自独立 `package.json`、可独立发版、共享工程规范,换来配置复用、跨包改动一次提交、本地联调免发版。本仓库实际脚本 / 发布落地见 [husky-changesets](../husky-changesets/README.md)。· [← 返回 docs 索引](../README.md)
 
 ## 一、最小结构
 
